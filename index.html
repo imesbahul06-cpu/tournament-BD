@@ -1,299 +1,124 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TOURNAMENT BD - Ultimate</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOURNAMENT BD</title>
 <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root { --primary: #5B3DF0; --bg: #F4F4F7; --card: #FFFFFF; --success: #22C55E; --danger: #EF4444; }
-* { margin:0; padding:0; box-sizing:border-box; font-family: 'Hind Siliguri', sans-serif; }
-body { background:var(--bg); padding-bottom:80px; color:#222; }
-.login-box { width:90%; max-width:420px; margin:50px auto; background:var(--card); padding:30px; border-radius:18px; box-shadow:0 10px 40px rgba(91,61,240,0.12); }
-.login-box h2 { text-align:center; margin-bottom:20px; color:var(--primary); font-weight:700; }
-.input, select { width:100%; padding:14px; margin:10px 0; border-radius:10px; border:1px solid #E5E5E5; background:#FAFAFA; font-size:15px; }
-.btn { padding:14px; background:var(--primary); color:#fff; border:none; border-radius:10px; width:100%; font-weight:700; cursor:pointer; font-size:16px; }
-.btn.danger { background:var(--danger); }
-.header { background:var(--card); padding:14px 18px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:10; box-shadow:0 2px 10px rgba(0,0,0,0.04); }
-.logo { font-weight:800; color:var(--primary); font-size:18px; }
-.balance-btn { background:#EEEBFF; color:var(--primary); padding:8px 14px; border-radius:20px; font-weight:700; font-size:14px; }
-.page { display:none; padding:18px; }
-.page.active { display:block; }
-.notice { background:#FFFBEA; border-left:4px solid #FACC15; padding:12px; border-radius:8px; margin-bottom:15px; font-size:13px; }
-.slider { display:flex; overflow-x:auto; gap:12px; margin:15px 0; }
-.slide { min-width:90%; border-radius:16px; overflow:hidden; }
-.slide img { width:100%; height:160px; object-fit:cover; }
-.section-title { font-weight:700; font-size:17px; margin:18px 0 10px; }
-.cat-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-.cat-card { background:var(--card); border-radius:14px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,0.05); cursor:pointer; }
-.cat-card img { width:100%; height:110px; object-fit:cover; border-radius:14px 14px 0 0; }
-.cat-card p { padding:12px; font-weight:600; }
-.match-card,.profile-card,.record-card { background:var(--card); padding:16px; border-radius:14px; margin-bottom:14px; box-shadow:0 4px 15px rgba(0,0,0,0.05); }
-.join-btn { background:var(--primary); color:#fff; padding:11px; border-radius:9px; border:none; margin-top:12px; width:100%; font-weight:700; }
-.join-btn.playing { background:var(--success); }
-.action-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:18px 0; }
-.menu-list { background:var(--card); border-radius:14px; overflow:hidden; }
-.menu-item { padding:16px; border-bottom:1px solid var(--bg); display:flex; justify-content:space-between; cursor:pointer; font-weight:600; }
-.popup { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.55); z-index:99; justify-content:center; align-items:center; }
-.popup-box { background:var(--card); width:92%; padding:22px; border-radius:16px; max-height:90vh; overflow-y:auto; }
-.bottom-nav { position:fixed; bottom:0; left:0; right:0; background:var(--card); display:flex; justify-content:space-around; padding:8px 0; box-shadow:0 -2px 15px rgba(0,0,0,0.06); }
-.nav-item { text-align:center; font-size:11px; color:#999; cursor:pointer; }
-.nav-item.active { color:var(--primary); font-weight:700; }
-.timer { color:var(--danger); font-weight:700; font-size:13px; }
-.badge { background:var(--danger); color:#fff; border-radius:50%; padding:2px 7px; font-size:11px; }
+:root{--primary:#5B3DF0;--bg:#F4F4F7;--card:#FFFFFF;--danger:#EF4444}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Hind Siliguri',sans-serif}
+body{background:var(--bg);padding-bottom:80px}
+.login-box{width:90%;max-width:420px;margin:80px auto;background:var(--card);padding:30px;border-radius:18px;box-shadow:0 10px 40px rgba(91,61,240,0.12)}
+.input{width:100%;padding:14px;margin:10px 0;border-radius:10px;border:1px solid #E5E5E5}
+.btn{padding:14px;background:var(--primary);color:#fff;border:none;border-radius:10px;width:100%;font-weight:700;margin-bottom:10px}
+.header{background:var(--card);padding:14px 18px;display:flex;justify-content:space-between;position:sticky;top:0}
+.page{display:none;padding:18px}.page.active{display:block}
+.slider{display:flex;overflow-x:auto;gap:12px}.slide{min-width:90%}.slide img{width:100%;height:160px;border-radius:16px;object-fit:cover}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cat-card{background:var(--card);border-radius:14px;text-align:center}.cat-card img{width:100%;height:110px;border-radius:14px 14px 0 0;object-fit:cover}
+.match-card{background:var(--card);padding:16px;border-radius:14px;margin-bottom:14px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);display:flex;justify-content:space-around;padding:8px 0}
+.nav-item{text-align:center;font-size:11px;color:#999}.nav-item.active{color:var(--primary);font-weight:700}
+.badge{background:#EF4444;color:#fff;padding:2px 6px;border-radius:10px;font-size:11px} /* এইটা নতুন */
 </style>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- LOGIN / REGISTER -->
-<div id="loginPage">
-  <div class="login-box">
-    <h2 id="formTitle">TOURNAMENT BD</h2>
-    <div id="registerFields" style="display:none;">
-      <input type="text" class="input" id="regName" placeholder="আপনার নাম">
-    </div>
-    <input type="number" class="input" id="userNumber" placeholder="মোবাইল নাম্বার">
-    <input type="password" class="input" id="userPass" placeholder="পাসওয়ার্ড">
-    <button class="btn" id="loginBtn" onclick="login()">Login</button>
-    <button class="btn" id="registerBtn" onclick="register()" style="display:none; margin-top:10px;">Register</button>
-    <p style="text-align:center; margin-top:12px; color:var(--primary); cursor:pointer; font-weight:600;" id="switchText" onclick="switchForm()">নতুন একাউন্ট খুলুন</p>
-  </div>
-</div>
+<div id="loginPage"><div class="login-box">
+<h2 style="text-align:center;color:var(--primary)">TOURNAMENT BD</h2>
+<input type="number" class="input" id="userNumber" placeholder="মোবাইল নাম্বার">
+<input type="password" class="input" id="userPass" placeholder="পাসওয়ার্ড">
+<button class="btn" onclick="login()">Login / Register</button>
+</div></div>
 
-<!-- MAIN APP -->
 <div id="mainApp" style="display:none;">
-  <div class="header">
-    <div class="logo">TOURNAMENT BD</div>
-    <div class="balance-btn">💼 <span id="userBalance">0.00</span> BDT</div>
-  </div>
+<div class="header"><div style="color:var(--primary);font-weight:800">TOURNAMENT BD</div>
+<div style="background:#EEEBFF;color:var(--primary);padding:8px 14px;border-radius:20px">💼 <span id="userBalance">0</span> BDT</div></div>
 
-  <!-- HOME -->
-  <div id="home" class="page active">
-    <div class="notice" id="adminNotice">স্বাগতম! প্রতিদিন নতুন ম্যাচ পাবেন।</div>
-    <div class="slider">
-      <div class="slide"><img src="https://i.imgur.com/5QZJ9pL.jpg"></div>
-      <div class="slide"><img src="https://i.imgur.com/3mX7pQa.jpg"></div>
-      <div class="slide"><img src="https://i.imgur.com/7kL2pQb.jpg"></div>
-    </div>
-    <div class="section-title">⊞ ক্যাটাগরি</div>
-    <div class="cat-grid">
-      <div class="cat-card" onclick="filterMatch('BR')"><img src="https://i.imgur.com/3mX7pQa.jpg"><p>BR MATCH</p></div>
-      <div class="cat-card" onclick="filterMatch('CS')"><img src="https://i.imgur.com/7kL2pQb.jpg"><p>CLASH SQUAD</p></div>
-      <div class="cat-card" onclick="filterMatch('LONE')"><img src="https://i.imgur.com/1aC5pQd.jpg"><p>LONE WOLF</p></div>
-      <div class="cat-card" onclick="filterMatch('FREE')"><img src="https://i.imgur.com/9nB4pQc.jpg"><p>FREE MATCH</p></div>
-    </div>
-  </div>
-
-  <!-- MATCHES -->
-  <div id="matches" class="page"><div class="section-title" id="matchTitle">🎮 সকল ম্যাচ</div><div id="matchList">লোড হচ্ছে...</div></div>
-
-  <!-- RECORD -->
-  <div id="record" class="page"><div class="section-title">📜 আমার ম্যাচ রেকর্ড</div><div id="myRecordList">কোন ম্যাচ খেলা হয়নি</div></div>
-
-  <!-- PROFILE -->
-  <div id="profile" class="page">
-    <div class="profile-card">
-      <h3 id="profileName">Name</h3>
-      <span id="profileID" style="background:var(--primary); color:#fff; padding:5px 12px; border-radius:20px; font-size:12px;">ID: </span>
-    </div>
-    <div class="action-grid">
-      <div class="menu-item" onclick="openPopup('deposit')">➕ Deposit</div>
-      <div class="menu-item" onclick="openPopup('withdraw')">➖ Withdraw</div>
-    </div>
-    <div class="menu-list">
-      <div class="menu-item" onclick="showInbox()">📩 Inbox <span id="msgCount" class="badge">0</span></div>
-      <div class="menu-item" onclick="supportPopup.style.display='flex'">🎧 Support</div>
-      <div class="menu-item" onclick="showRules()">📜 Rules</div>
-      <div class="menu-item" onclick="logout()">🚪 Logout</div>
-    </div>
-  </div>
-
-  <!-- POPUPS -->
-  <div id="walletPopup" class="popup">
-    <div class="popup-box">
-      <h3 id="walletTitle"></h3>
-      <select class="input" id="walletMethod" style="display:none;">
-        <option value="">কিভাবে পাঠাবেন?</option>
-        <option value="Bkash">Bkash</option>
-        <option value="Nagad">Nagad</option>
-      </select>
-      <input type="number" class="input" id="walletAmount" placeholder="কত টাকা?">
-      <input type="text" class="input" id="walletTrx" placeholder="">
-      <button class="btn" onclick="submitWallet()">Submit Request</button>
-      <button class="btn danger" style="margin-top:8px;" onclick="walletPopup.style.display='none'">Cancel</button>
-    </div>
-  </div>
-  <div id="inboxPopup" class="popup"><div class="popup-box"><h3>📩 Inbox</h3><div id="inboxList"></div><button class="btn danger" style="margin-top:8px;" onclick="inboxPopup.style.display='none'">Close</button></div></div>
-  <div id="supportPopup" class="popup"><div class="popup-box"><h3>🎧 Support</h3><textarea id="supportMsg" class="input" rows="4" placeholder="আপনার সমস্যা লিখুন"></textarea><button class="btn" onclick="sendSupport()">Send</button><button class="btn danger" style="margin-top:8px;" onclick="supportPopup.style.display='none'">Cancel</button></div></div>
-  <div id="rulesPopup" class="popup"><div class="popup-box"><h3>📜 Rules</h3><p>1. এক ID দিয়ে 1 বার Join<br>2. সময় শেষ হলে Room ID পাবেন<br>3. Fake Play করলে Ban</p><button class="btn danger" style="margin-top:8px;" onclick="rulesPopup.style.display='none'">Close</button></div></div>
-
-  <nav class="bottom-nav">
-    <div class="nav-item active" onclick="showPage('home',this)"><div>🏠</div>Home</div>
-    <div class="nav-item" onclick="showPage('matches',this)"><div>🎮</div>Matches</div>
-    <div class="nav-item" onclick="showPage('record',this)"><div>📜</div>Record</div>
-    <div class="nav-item" onclick="showPage('profile',this)"><div>👤</div>Profile</div>
-  </nav>
+<div id="home" class="page active">
+<div id="adminNotice" style="background:#FFFBEA;padding:12px;border-radius:8px;margin-bottom:15px"></div>
+<div class="slider" id="sliderArea"></div>
+<div style="font-weight:700;margin:18px 0">⊞ ক্যাটাগরি</div>
+<div class="cat-grid" id="catArea"></div>
 </div>
 
+<div id="matches" class="page"><div id="matchList"></div></div>
+
+<div id="profile" class="page">
+  <h3 id="profileName">Name</h3>
+  <button class="btn" onclick="sendSupportTicket()">🎧 Support</button>  <!-- নতুন -->
+  <button class="btn" onclick="openInbox()">📩 Inbox <span id="msgCount" class="badge">0</span></button> <!-- নতুন -->
+  <button class="btn" onclick="logout()" style="background:var(--danger)">Logout</button>
+</div>
+
+<nav class="bottom-nav">
+<div class="nav-item active" onclick="showPage('home',this)">🏠<br>Home</div>
+<div class="nav-item" onclick="showPage('matches',this)">🎮<br>Match</div>
+<div class="nav-item" onclick="showPage('profile',this)">👤<br>Profile</div>
+</nav>
+</div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 <script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDQCtTrLR8duNg7Ux_5D9BM0SRV5aukVIE",
+  authDomain: "tournament-bd-63fd9.firebaseapp.com",
+  databaseURL: "https://tournament-bd-63fd9-default-rtdb.firebaseio.com",
+  projectId: "tournament-bd-63fd9"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
 let CURRENT_USER = null;
-let isRegister = false;
 
-// 1. SWITCH FORM
-function switchForm(){
-  isRegister =!isRegister;
-  if(isRegister){
-    formTitle.innerText = "একাউন্ট তৈরি করুন";
-    registerFields.style.display = 'block';
-    loginBtn.style.display = 'none';
-    registerBtn.style.display = 'block';
-    switchText.innerText = "একাউন্ট আছে? Login করুন";
-  } else {
-    formTitle.innerText = "TOURNAMENT BD";
-    registerFields.style.display = 'none';
-    loginBtn.style.display = 'block';
-    registerBtn.style.display = 'none';
-    switchText.innerText = "নতুন একাউন্ট খুলুন";
-  }
-}
-
-// 2. REGISTER + UNIQUE CHECK + AUTO LOGIN
-function register(){
-  if(!regName.value ||!userNumber.value ||!userPass.value) return alert("সব ঘর পূরণ করুন");
-  if(localStorage.getItem('user_'+userNumber.value)) return alert("❌ এই নাম্বার দিয়ে একাউন্ট আছে");
-
-  let allKeys = Object.keys(localStorage);
-  let nameExists = allKeys.some(key => key.startsWith('user_') && JSON.parse(localStorage.getItem(key)).name.toLowerCase() == regName.value.toLowerCase());
-  if(nameExists) return alert("❌ এই নাম দিয়ে আগে একাউন্ট খোলা আছে");
-
-  let user = {name: regName.value, number: userNumber.value, pass: userPass.value, balance: 100, id: "BD" + Date.now()};
-  localStorage.setItem('user_'+userNumber.value, JSON.stringify(user));
-
-  CURRENT_USER = user; loginPage.style.display = 'none'; mainApp.style.display = 'block'; loadUserData();
-  alert("✅ স্বাগতম " + user.name);
-}
-
-// 3. LOGIN
 function login(){
-  let user = JSON.parse(localStorage.getItem('user_'+userNumber.value));
-  if(user && user.pass == userPass.value){
-    CURRENT_USER = user; loginPage.style.display = 'none'; mainApp.style.display = 'block'; loadUserData();
-  } else { alert("ভুল নাম্বার বা পাসওয়ার্ড!"); }
+  let num=userNumber.value; let pass=userPass.value;
+  if(!num || !pass) return alert("সব Fill করুন");
+  db.ref('users/'+num).once('value').then(snap=>{
+    if(!snap.exists()){
+      db.ref('users/'+num).set({name:"User"+num, pass:pass, balance:100, id:"BD"+Date.now()});
+    }
+    let user=snap.val()||{name:"User"+num,pass:pass,balance:100};
+    if(user.pass==pass){CURRENT_USER=user; CURRENT_USER.number=num; loginPage.style.display='none'; mainApp.style.display='block'; loadData();}
+    else alert("ভুল পাসওয়ার্ড");
+  });
 }
-function logout(){ CURRENT_USER = null; mainApp.style.display = 'none'; loginPage.style.display = 'block'; }
+function logout(){CURRENT_USER=null; mainApp.style.display='none'; loginPage.style.display='block';}
+function showPage(id,el){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active')}
 
-// 4. LOAD DATA
-function loadUserData(){
+function loadData(){
   profileName.innerText = CURRENT_USER.name;
-  profileID.innerText = "ID: " + CURRENT_USER.id;
-  userBalance.innerText = CURRENT_USER.balance.toFixed(2);
-  loadAppMatches(); loadRecord(); showInboxCount(); loadNotice();
+  db.ref('users/'+CURRENT_USER.number+'/balance').on('value',snap=>{userBalance.innerText=snap.val()});
+  db.ref('appData/slider').on('value',snap=>{let s=snap.val()||[]; sliderArea.innerHTML=s.map(x=>`<div class="slide"><img src="${x.img}"></div>`).join('')});
+  db.ref('appData/categories').on('value',snap=>{let c=snap.val()||[]; catArea.innerHTML=c.map(x=>`<div class="cat-card"><img src="${x.img}"><p>${x.name}</p></div>`).join('')});
+  db.ref('appData/notice').on('value',snap=>{adminNotice.innerText=snap.val()||"স্বাগতম!"});
+  db.ref('appData/matches').on('value',snap=>{let m=snap.val()||[]; matchList.innerHTML=m.map(x=>`<div class="match-card"><b>${x.name}</b><p>Entry: ${x.entry} | Prize: ${x.prize}</p></div>`).join('')});
+
+  // INBOX COUNT
+  db.ref('adminMessages/'+CURRENT_USER.number).on('value', s=>{
+    document.getElementById('msgCount').innerText = s.numChildren();
+  });
 }
 
-// 5. PAGES
-function showPage(pageId, el){
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(pageId).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  el.classList.add('active');
-}
-function filterMatch(type){
-  let names = {BR:"BR MATCH", CS:"CLASH SQUAD", LONE:"LONE WOLF", FREE:"FREE MATCH"};
-  matchTitle.innerText = "🎮 " + names[type];
-  showPage('matches', document.querySelectorAll('.nav-item')[1]);
-  localStorage.setItem('currentFilter', type);
-  loadAppMatches();
-}
-
-// 6. MATCHES + JOIN + TIMER
-function loadAppMatches(){
-  let filter = localStorage.getItem('currentFilter') || "ALL";
-  let matches = JSON.parse(localStorage.getItem('tournamentMatches')) || [
-    {id:1, name:"BR Match #101", mode:"BR", entry:10, prize:100, time: new Date(Date.now()+10*60000)},
-    {id:2, name:"CS Match #55", mode:"CS", entry:20, prize:200, time: new Date(Date.now()+20*60000)}
-  ];
-  if(filter!= "ALL") matches = matches.filter(m => m.mode == filter);
-  matchList.innerHTML = matches.map(m=>`<div class="match-card" data-time="${m.time}" data-id="${m.id}">
-    <div style="display:flex; justify-content:space-between;"><b>${m.name}</b><span class="timer"></span></div>
-    <p style="font-size:13px;">Entry: ${m.entry} BDT | Prize: ${m.prize} BDT</p>
-    <button class="join-btn" onclick="joinMatch(this,${m.id})">Join Now</button>
-  </div>`).join('') || "এই ক্যাটাগরিতে কোন ম্যাচ নেই";
-}
-function joinMatch(btn, matchID){
-  let matches = JSON.parse(localStorage.getItem('tournamentMatches')) || [];
-  let match = matches.find(m => m.id == matchID);
-  if(!match) match = {entry:10, name:"Test Match", time:new Date()};
-  if(CURRENT_USER.balance < match.entry) return alert("Balance নেই। Deposit করুন");
-  CURRENT_USER.balance -= parseFloat(match.entry);
-  localStorage.setItem('user_'+CURRENT_USER.number, JSON.stringify(CURRENT_USER));
-  let record = JSON.parse(localStorage.getItem('record_'+CURRENT_USER.id)) || [];
-  record.unshift({name: match.name, time: new Date().toLocaleString(), status: "Joined"});
-  localStorage.setItem('record_'+CURRENT_USER.id, JSON.stringify(record));
-  alert("✅ Match Joined!"); loadUserData();
-}
-
-// 7. RECORD + WALLET + BKASH/NAGAD + INBOX + SUPPORT + RULES + NOTICE
-function loadRecord(){
-  let record = JSON.parse(localStorage.getItem('record_'+CURRENT_USER.id)) || [];
-  myRecordList.innerHTML = record.map(r=>`<div class="record-card"><b>${r.name}</b><p>Status: ${r.status}</p><small>${r.time}</small></div>`).join('') || "কোন ম্যাচ খেলা হয়নি";
-}
-let walletType = "";
-function openPopup(type){
-  walletType = type; walletPopup.style.display='flex';
-  if(type=='deposit'){
-    walletTitle.innerText = "➕ Deposit Request";
-    walletMethod.style.display = 'block';
-    walletAmount.placeholder = "কত টাকা Deposit করবেন?";
-    walletTrx.placeholder = "যে নাম্বার থেকে পাঠাবেন";
-  } else {
-    walletTitle.innerText = "➖ Withdraw Request";
-    walletMethod.style.display = 'none';
-    walletAmount.placeholder = "কত টাকা Withdraw করবেন?";
-    walletTrx.placeholder = "আপনার Bkash/Nagad নাম্বার";
+// SUPPORT + INBOX FUNCTIONS
+function sendSupportTicket(){
+  let problem = prompt("আপনার সমস্যা লিখুন");
+  if(problem){
+    db.ref('supportTickets').push({
+      name: CURRENT_USER.name, id: CURRENT_USER.number, msg: problem, time: new Date().toLocaleString()
+    });
+    alert("✅ Admin এর কাছে Ticket গেছে");
   }
 }
-function submitWallet(){
-  if(!walletAmount.value ||!walletTrx.value) return alert("সব Fill করুন");
-  let method = walletType == 'deposit'? walletMethod.value : "Withdraw";
-  if(walletType == 'deposit' &&!method) return alert("Bkash নাকি Nagad সিলেক্ট করুন");
-  let reqs = JSON.parse(localStorage.getItem('walletRequests')) || [];
-  reqs.push({id: CURRENT_USER.id, name: CURRENT_USER.name, number: CURRENT_USER.number, type: walletType, method: method, amount: walletAmount.value, trx: walletTrx.value, time: new Date().toLocaleString(), status: "Pending"});
-  localStorage.setItem('walletRequests', JSON.stringify(reqs));
-  alert("✅ Request Admin এর কাছে গেছে। 5-10 মিনিটে Balance Add হবে");
-  walletPopup.style.display='none'; walletAmount.value=""; walletTrx.value=""; walletMethod.value="";
-}
-function showInboxCount(){
-  let msgs = JSON.parse(localStorage.getItem('adminMessages')) || {};
-  msgCount.innerText = (msgs[CURRENT_USER.id] || []).length;
-}
-function showInbox(){
-  let msgs = JSON.parse(localStorage.getItem('adminMessages')) || {};
-  inboxList.innerHTML = (msgs[CURRENT_USER.id] || []).map(m=>`<p style="background:#EEEBFF; padding:10px; border-radius:8px; margin:5px 0;">${m.msg}</p>`).join('') || "কোন মেসেজ নেই";
-  inboxPopup.style.display='flex';
-}
-function sendSupport(){
-  if(!supportMsg.value) return alert("মেসেজ লিখুন");
-  let tickets = JSON.parse(localStorage.getItem('supportTickets')) || [];
-  tickets.push({id: CURRENT_USER.id, name: CURRENT_USER.name, msg: supportMsg.value, time: new Date().toLocaleString()});
-  localStorage.setItem('supportTickets', JSON.stringify(tickets)); alert("Admin এর কাছে গেছে"); supportPopup.style.display='none'; supportMsg.value="";
-}
-function showRules(){ rulesPopup.style.display='flex'; }
-function loadNotice(){
-  let notice = localStorage.getItem('adminNotice') || "স্বাগতম! প্রতিদিন নতুন ম্যাচ পাবেন।";
-  adminNotice.innerText = notice;
-}
-
-// 8. TIMER UPDATE
-setInterval(()=>{
-  document.querySelectorAll('.match-card').forEach(card => {
-    let diff = new Date(card.dataset.time).getTime() - new Date().getTime();
-    let btn = card.querySelector('.join-btn');
-    if(diff <= 0){ card.querySelector('.timer').innerText = "PLAYING"; btn.innerText="PLAYING"; btn.classList.add('playing'); btn.disabled=true; }
-    else { let m = Math.floor(diff/60000); let s = Math.floor((diff%60000)/1000); card.querySelector('.timer').innerText = m+"m "+s+"s"; }
+function openInbox(){
+  db.ref('adminMessages/'+CURRENT_USER.number).once('value').then(s=>{
+    let msgs = ""; s.forEach(x=>{ msgs += x.val().time + "\n" + x.val().msg + "\n\n" });
+    alert("📩 Admin Messages:\n\n" + (msgs || "কোনো Message নেই"));
+    db.ref('adminMessages/'+CURRENT_USER.number).remove();
   });
-}, 1000);
-</script>
-<script src="script.js"></script>
-</body>
-</html>
+}
+</script><script src="script.js"></script>
+</body></html>
